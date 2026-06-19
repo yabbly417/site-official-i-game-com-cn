@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yabbly417.github.io/site-official-i-game-com-cn/sitemap.xml
