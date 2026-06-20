@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雷火电竞 · 产品说明</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.7;
+      color: #2c2e33;
+      background-color: #f8f9fc;
+    }
+
+    /* 深色头图区域 */
+    .hero {
+      background: linear-gradient(135deg, #0b0c10 0%, #1f2029 70%, #272a35 100%);
+      color: #e8e9ed;
+      padding: 4rem 2rem 3.2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #f8f9fc;
+      clip-path: ellipse(70% 100% at 50% 100%);
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 400;
+      letter-spacing: 2px;
+      color: #f0f1f5;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero .sub {
+      font-size: 1.1rem;
+      color: #b0b4c1;
+      max-width: 600px;
+      margin: 0.25rem auto 1rem;
+      font-weight: 300;
+    }
+
+    .hero .tagline {
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      display: inline-block;
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #cdd0da;
+    }
+
+    /* 正文浅色区域 */
+    .container {
+      max-width: 960px;
+      margin: -0.5rem auto 0;
+      padding: 1.8rem 2rem 3.5rem;
+      position: relative;
+      z-index: 2;
+      background: #f8f9fc;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 450;
+      color: #1d212b;
+      margin: 2.2rem 0 0.8rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 2px solid #d0d6e0;
+      display: inline-block;
+    }
+
+    .section-title:first-of-type {
+      margin-top: 0.2rem;
+    }
+
+    p {
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+      color: #33363c;
+    }
+
+    a {
+      color: #1d5b9e;
+      text-decoration: none;
+      border-bottom: 1px dotted #9bb3d1;
+      transition: border-bottom 0.15s, color 0.15s;
+    }
+
+    a:hover {
+      color: #0d3b6b;
+      border-bottom: 1px solid #0d3b6b;
+    }
+
+    /* 卡片亮点 */
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 1.8rem 0 2.2rem;
+    }
+
+    .highlight-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.02);
+      border: 1px solid #e9ecf2;
+      transition: box-shadow 0.2s;
+    }
+
+    .highlight-card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .highlight-card .icon {
+      font-size: 1.7rem;
+      margin-bottom: 0.3rem;
+      display: block;
+      color: #1f4e7a;
+    }
+
+    .highlight-card h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 0.4rem;
+      color: #1d232b;
+    }
+
+    .highlight-card p {
+      font-size: 0.92rem;
+      color: #4a4f59;
+      margin-bottom: 0;
+    }
+
+    /* 场景/使用建议 */
+    .scenario-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.2rem 0 1.8rem;
+    }
+
+    .scenario-list li {
+      padding: 0.65rem 0 0.65rem 1.8rem;
+      position: relative;
+      border-bottom: 1px solid #e6eaf0;
+    }
+
+    .scenario-list li:last-child {
+      border-bottom: none;
+    }
+
+    .scenario-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #1d5b9e;
+      font-weight: 400;
+    }
+
+    /* 提示与FAQ摘要 */
+    .note-box {
+      background: #f1f4fa;
+      border-left: 4px solid #385f8a;
+      padding: 1rem 1.4rem;
+      border-radius: 0 10px 10px 0;
+      margin: 1.8rem 0;
+    }
+
+    .faq-mini {
+      margin-top: 2rem;
+    }
+
+    .faq-mini details {
+      margin-bottom: 0.6rem;
+      padding: 0.6rem 0.8rem;
+      background: #ffffff;
+      border-radius: 8px;
+      border: 1px solid #e4e8ef;
+    }
+
+    .faq-mini summary {
+      font-weight: 500;
+      cursor: pointer;
+      color: #1d2a3a;
+      padding: 0.2rem 0;
+    }
+
+    .faq-mini details p {
+      margin: 0.6rem 0 0.2rem;
+      font-size: 0.95rem;
+      color: #3d434e;
+    }
+
+    /* 页面底部 */
+    .footer-note {
+      margin-top: 3.4rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #dce1ea;
+      font-size: 0.9rem;
+      color: #606672;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+      .hero {
+        padding: 3rem 1.2rem 2.8rem;
+      }
+      .container {
+        padding: 1rem 1.2rem 2.5rem;
+      }
+      .highlight-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <header class="hero">
+    <h1>雷火电竞</h1>
+    <p class="sub">一个稳定、克制的线上入口 · 产品说明</p>
+    <span class="tagline">界面清晰 · 指向明确</span>
+  </header>
+
+  <!-- 正文区域 -->
+  <main class="container">
+
+    <!-- 摘要 -->
+    <h2 class="section-title">摘要</h2>
+    <p>
+      对许多用户来说，找到一个可靠、稳定的入口常常比功能本身更值得留意。
+      <a href="https://beta-leihuo.com">雷火电竞</a> 是当前可访问的页面之一，
+      它的结构直接，没有多余跳转，适合作为日常浏览的固定起点。
+      以下从几个侧面简要说明它的特点与使用场景。
+    </p>
+
+    <!-- 亮点卡片 -->
+    <h2 class="section-title">亮点</h2>
+    <div class="highlight-grid">
+      <div class="highlight-card">
+        <span class="icon">⚙️</span>
+        <h3>加载稳定</h3>
+        <p>页面资源轻量，响应速度在多数网络环境下表现一致，无需频繁刷新。</p>
+      </div>
+      <div class="highlight-card">
+        <span class="icon">🧭</span>
+        <h3>导航直接</h3>
+        <p>主要功能入口排列清晰，减少不必要的页面层级，更容易定位。</p>
+      </div>
+      <div class="highlight-card">
+        <span class="icon">📄</span>
+        <h3>信息克制</h3>
+        <p>没有夸张标语或干扰弹窗，内容以实用为主，视觉上保持干净。</p>
+      </div>
+    </div>
+
+    <!-- 使用建议（场景） -->
+    <h2 class="section-title">使用建议</h2>
+    <p>
+      根据日常使用习惯，以下场景中 <a href="https://beta-leihuo.com">雷火电竞</a> 的体验比较自然：
+    </p>
+    <ul class="scenario-list">
+      <li><strong>固定标签页</strong> — 如果你习惯将常用页面保留在浏览器标签栏，可以直接把此地址设为启动页或书签。</li>
+      <li><strong>快速对照</strong> — 同时打开多个信息源比较时，它的简洁界面能减少视觉干扰。</li>
+      <li><strong>过渡使用</strong> — 在主要平台暂时维护或需要切换环境时，可以作为临时落脚点。</li>
+      <li><strong>轻量浏览</strong> — 对设备性能或网络流量有限制的用户，较低的加载成本会更友好。</li>
+    </ul>
+
+    <!-- 可信克制的访问说明 + 提示 -->
+    <h2 class="section-title">访问说明</h2>
+    <div class="note-box">
+      <p><strong>关于可用性</strong> · 域名与服务器由服务方维护，建议通过常规网络环境访问。如果遇到访问延迟，可稍后重试或检查本地网络设置。本页面仅对产品形态做客观描述，不构成任何承诺或保证。</p>
+    </div>
+    <p>
+      另外，当你第一次打开 <a href="https://beta-leihuo.com">雷火电竞</a> 时，
+      可以留意页面布局和分类方式。不同时间访问，内容可能会有微小调整，
+      但整体框架保持稳定。如果有不熟悉的功能区域，建议先浏览默认页面上的指引文案。
+    </p>
+
+    <!-- FAQ 摘要（克制版本） -->
+    <h2 class="section-title">常见疑问摘要</h2>
+    <div class="faq-mini">
+      <details>
+        <summary>这个页面适合长期使用吗？</summary>
+        <p>取决于你的习惯。如果希望有一个响应稳定、不频繁变动的起始页，可以考虑纳入日常访问列表。当然，也可以作为备选之一。</p>
+      </details>
+      <details>
+        <summary>是否需要注册或登录？</summary>
+        <p>页面本身不强制要求。部分功能可能需要账户体系支持，建议按页面实际情况操作。</p>
+      </details>
+      <details>
+        <summary>内容更新频率如何？</summary>
+        <p>根据运营节奏，信息会按阶段调整。没有固定周期，但重大变化通常会在页面内体现。</p>
+      </details>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+      <span>产品说明 · 内容客观 · 仅供参考</span>
+    </div>
+
+  </main>
+
+</body>
+</html>
