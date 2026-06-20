@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷火电竞 · 信息索引与内容整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(145deg, #faeee7 0%, #f5d7c3 60%, #ecc6b5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            color: #2d2a24;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* 卡片通用设计 */
+        .card {
+            background: #fffcf9;
+            border-radius: 32px;
+            padding: 2.2rem 2.5rem;
+            box-shadow: 0 12px 28px rgba(160, 100, 60, 0.12), 0 4px 10px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 18px 36px rgba(150, 80, 40, 0.15);
+            transform: translateY(-3px);
+        }
+
+        /* hero 区 */
+        .hero {
+            background: #fef6f0;
+            border-radius: 32px;
+            padding: 3.8rem 2.5rem 3rem;
+            background-image: radial-gradient(circle at 10% 20%, rgba(240, 180, 130, 0.20) 0%, transparent 60%);
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #3f2e1f;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #5f4c3a;
+            max-width: 650px;
+            margin: 0 auto 1.2rem;
+            line-height: 1.6;
+        }
+
+        .hero .meta-badge {
+            display: inline-block;
+            background: #dbbda4;
+            color: #2a2018;
+            font-size: 0.85rem;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            letter-spacing: 0.02em;
+            font-weight: 450;
+            margin-top: 0.6rem;
+        }
+
+        /* 网格布局：优势 + 说明 */
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 720px) {
+            .grid-2col {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            .card {
+                padding: 1.8rem 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero {
+                padding: 2.8rem 1.2rem 2.2rem;
+            }
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 520;
+            color: #3f2b1b;
+            border-left: 5px solid #d9a57e;
+            padding-left: 1rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .feature-list li::before {
+            content: "▹";
+            color: #b88463;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .plain-text {
+            line-height: 1.75;
+            color: #3a332c;
+        }
+
+        .plain-text p {
+            margin-bottom: 1rem;
+        }
+
+        .plain-text strong {
+            color: #4e3826;
+        }
+
+        /* 说明区 - 内嵌列表 */
+        .info-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .info-item {
+            background: #f6efe9;
+            border-radius: 20px;
+            padding: 1rem 1.4rem;
+        }
+
+        .info-item .info-label {
+            font-weight: 580;
+            color: #4b3625;
+            display: block;
+            margin-bottom: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .info-item .info-desc {
+            color: #4d3d2f;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* FAQ 摘要 */
+        .faq-preview {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-q {
+            background: #f4e7dd;
+            border-radius: 28px;
+            padding: 0.9rem 1.5rem;
+            cursor: default;
+            font-weight: 470;
+            color: #392f25;
+            border-left: 4px solid #cfaa8b;
+        }
+
+        .faq-a {
+            margin: 0 0 0.2rem 1.5rem;
+            padding: 0.2rem 0.5rem 0.6rem;
+            color: #4b3d30;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* 底部链接 */
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem 2rem;
+            background: #f4e4d6;
+            border-radius: 60px;
+            padding: 1.2rem 2.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .footer-links .copy {
+            color: #4c3b2b;
+            font-size: 0.9rem;
+        }
+
+        .footer-links .link-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #4b3423;
+            text-decoration: none;
+            font-weight: 480;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+            padding-bottom: 2px;
+        }
+
+        .footer-links a:hover {
+            border-bottom-color: #b07d5a;
+            color: #2d1f14;
+        }
+
+        .footer-links .primary-link {
+            background: #dbb38f;
+            padding: 0.5rem 1.6rem;
+            border-radius: 40px;
+            color: #201812;
+            font-weight: 520;
+            transition: background 0.2s;
+            border-bottom: none;
+        }
+
+        .footer-links .primary-link:hover {
+            background: #d0a27a;
+            border-bottom: none;
+        }
+
+        .footnote {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #6c5b4b;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- hero 区 -->
+    <div class="hero card">
+        <h1>雷火电竞 · 资料整理页</h1>
+        <div class="sub">从信息结构、内容索引与场景说明的角度，为你呈现一个关于「雷火电竞」的梳理页面。本页面向实用查阅与参考，保持中立、平实的叙述。</div>
+        <span class="meta-badge">方向 · 内容索引 / 落地说明</span>
+    </div>
+
+    <!-- 优势区 + 说明区 两栏 -->
+    <div class="grid-2col">
+        <!-- 优势区：整理视角 -->
+        <div class="card">
+            <div class="section-title">内容索引优势</div>
+            <ul class="feature-list">
+                <li>围绕 <strong>雷火电竞</strong> 整合常见资料分类，便于快速定位主题。</li>
+                <li>信息呈现以结构化为导向：场景、功能、常见疑问逐项列出。</li>
+                <li>避免冗余与夸大，着重于可查阅的说明内容。</li>
+                <li>页面布局适配移动端与桌面，阅读体验统一。</li>
+                <li>以卡片和分段组织内容，降低信息过载。</li>
+            </ul>
+        </div>
+
+        <!-- 说明区：具体信息分类 -->
+        <div class="card">
+            <div class="section-title">常见信息分类</div>
+            <div class="info-group">
+                <div class="info-item">
+                    <span class="info-label">平台定位</span>
+                    <div class="info-desc">提供电竞相关资讯、赛事数据及内容索引服务的线上平台。</div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">内容方向</span>
+                    <div class="info-desc">包括赛事报道、选手信息、游戏版本更新整理、社区讨论摘要等。</div>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">适用场景</span>
+                    <div class="info-desc">适合希望快速查阅电竞资料、关注赛事动态的用户参考。</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 场景 + 提示 合并卡片 -->
+    <div class="card">
+        <div class="section-title">应用场景与提示</div>
+        <div class="plain-text">
+            <p>在实际使用中，<strong>雷火电竞</strong> 的内容可以用于以下场景：对电竞赛事进行快速背景查阅，了解近期比赛结果与战队数据；作为信息收集的一环，将平台上的公开资讯与其他来源交叉对照。</p>
+            <p>本页面仅作为资料整理示例，不构成任何投资或参与建议。所有信息请以 <a href="https://main-leihuoesports.com" style="color:#8b5e3c;text-decoration:underline;font-weight:500;">雷火电竞</a> 官方实际展示为准。查阅时建议结合多方信息源，保持客观判断。</p>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要区 -->
+    <div class="card">
+        <div class="section-title">FAQ 摘要 · 常见疑问</div>
+        <div class="faq-preview">
+            <div>
+                <div class="faq-q">▸ 雷火电竞的内容更新频率如何？</div>
+                <div class="faq-a">通常跟随主要赛事及版本变动进行更新，具体可参考平台内时间戳。</div>
+            </div>
+            <div>
+                <div class="faq-q">▸ 页面上的资料是否具有权威性？</div>
+                <div class="faq-a">本页为整理性质的索引，所有信息应回溯至 <a href="https://main-leihuoesports.com" style="color:#7a553b;text-decoration:underline;">雷火电竞</a> 确认。建议用户自行核实关键数据。</div>
+            </div>
+            <div>
+                <div class="faq-q">▸ 是否可以转载或引用页面内容？</div>
+                <div class="faq-a">请以平台官方条款为准，合理引用并注明来源。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部链接 -->
+    <div class="footer-links">
+        <div class="copy">© 资料整理 · 仅供参考</div>
+        <div class="link-group">
+            <a href="https://main-leihuoesports.com" class="primary-link">雷火电竞</a>
+            <a href="#context" onclick="return false;">内容说明</a>
+            <a href="#index" onclick="return false;">索引结构</a>
+        </div>
+    </div>
+    <div class="footnote">本页为静态展示页，不存储任何用户数据。创作种子：仅供参考</div>
+</div>
+</body>
+</html>
